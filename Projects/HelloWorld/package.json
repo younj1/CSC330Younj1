@@ -1,0 +1,26 @@
+{
+  "name": "csc330younj1",
+  "version": "1.0.0",
+  "description": "**Student:** [Joe Youn]  \r **Student ID:** [70542227]  \r **Semester:** [Fall/2025]",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/younj1/CSC330Younj1.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/younj1/CSC330Younj1/issues"
+  },
+  "homepage": "https://github.com/younj1/CSC330Younj1#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
