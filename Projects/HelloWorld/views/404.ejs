@@ -1,16 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - Page Not Found | My Website</title>
-</head>
-<body>
-    <nav>
-        <a href="/">Home</a> | 
-        <a href="/about">About</a>
-    </nav>
-    
+<%- include('partials/header') %>
+
+<div class="error-page">
     <h1>404 - Oops! Page Not Found</h1>
     <p>The page you're looking for doesn't exist.</p>
     
@@ -18,10 +8,8 @@
     <ul>
         <li><a href="/">Home Page</a></li>
         <li><a href="/about">About Me</a></li>
+        <li><a href="/contact">Contact Me</a></li>
     </ul>
-    
-    <footer>
-        <p>&copy; 2025 Your Name</p>
-    </footer>
-</body>
-</html>
+</div>
+
+<%- include('partials/footer') %>

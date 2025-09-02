@@ -1,24 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %> | My Website</title>
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
-    <nav>
-        <a href="/">Home</a> |
-        <a href="/about">About</a>
-    </nav>
-    
-    <h1>Hello World - Now with Style!</h1>
-    <p><%= message %></p>
-    
-    <p>This started as a simple Express app, added EJS templates, and now has professional CSS styling!</p>
-    
-    <footer>
-        <p>&copy; 2025 Your Name</p>
-    </footer>
-</body>
-</html>
+<%- include('partials/header') %>
+
+<h1><%= title %></h1>
+<p><%= message %></p>
+
+<h2>My Background</h2>
+<p>I'm a computer science student learning Express.js and web development.</p>
+
+<h2>Skills I'm Learning</h2>
+<ul>
+    <li>Node.js and Express</li>
+    <li>EJS Templates and Partials</li>
+    <li>HTML/CSS</li>
+    <li>JavaScript</li>
+</ul>
+
+<%- include('partials/footer') %>
