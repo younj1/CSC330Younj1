@@ -23,6 +23,11 @@ app.get('/about', (req, res) => {
   });
 });
 
+// 404 Error Handler - MUST be last route!
+app.use((req, res) => {
+  res.status(404).render('404');
+});
+
 // Start server
 app.listen(PORT, () => {
   console.log(`🚀 Website running at http://localhost:${PORT}`);
