@@ -20,6 +20,12 @@ app.post('/contact', (req, res) => {
     });
   }
   
+  app.listen(PORT, () => {
+  console.log(`🚀 Website running at http://localhost:${PORT}`);
+  console.log(`📄 Pages: /, /about, /contact`);
+  console.log(`📝 Try submitting the contact form!`);
+});
+
   // In a real app, you'd save this to database or send email
   console.log('Contact form submission:', { name, email, message });
   
