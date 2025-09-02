@@ -98,5 +98,6 @@ app.use((req, res) => {
 
 app.listen(PORT, () => {
   console.log(`🚀 Website running at http://localhost:${PORT}`);
-  console.log(`🎨 Now serving CSS and other static files!`);
+  console.log(`📄 Pages: /, /about, /contact`);
+  console.log(`📝 Try submitting the contact form!`);
 });
