@@ -10,6 +10,9 @@ app.set('views', path.join(__dirname, 'views'));
 // Serve static files from public directory
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Middleware to parse form data
+app.use(express.urlencoded({ extended: true }));
+
 // Routes (same as before)
 app.get('/', (req, res) => {
   res.render('index', { 
