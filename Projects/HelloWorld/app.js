@@ -96,7 +96,10 @@ app.post('/contact', (req, res) => {
 
 // 404 Error Handler
 app.use((req, res) => {
-  res.status(404).render('404');
+  res.status(404).render('404', {
+    title: "404 Error",
+    message: "The page you're looking for doesn't exist."
+  });
 });
 
 app.listen(PORT, () => {
