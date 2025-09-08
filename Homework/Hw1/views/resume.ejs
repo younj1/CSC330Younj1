@@ -1,0 +1,51 @@
+<%- include('partials/header') %>
+
+<h1><%= title %></h1>
+
+<% if (message) { %>
+<div class="message">
+    <p><%= message %></p>
+</div>
+<% } %>
+
+<div class="resume-grid">
+    <div class="resume-section">
+        <h2>Contact Information</h2>
+        <p><strong>Email:</strong> younj1@southernct.edu</p>
+        <p><strong>GitHub:</strong> <a href="#">github.com/younj1</a></p>
+        <p><strong>LinkedIn:</strong> <a href="#">linkedin.com/in/joeyoun</a></p>
+    </div>
+
+    <div class="resume-section">
+        <h2>Education</h2>
+        <p><strong>Bachelor of Science in Computer Science</strong></p>
+        <p>Minor: Data Science</p>
+    </div>
+
+    <div class="resume-section">
+        <h2>Technical Skills</h2>
+        <ul>
+            <li>Programming Languages: Python, Java, JavaScript,</li>
+            <li>Data Science: Pandas, NumPy, SQL</li>
+            <li>Web Development: HTML, CSS, Node.js</li>
+            <li>Tools: Git, Docker, VS Code, Jupyter Notebook, Google Cloud</li>
+        </ul>
+    </div>
+
+    <div class="resume-section">
+        <h2>Projects</h2>
+        <ul>
+            <li><strong>Smart Campus App</strong> – Built a web app using block code my freshman year.</li>
+            <li><strong>Data Visualization Dashboard</strong> – Created interactive charts using D3.js and real-time data APIs.</li>
+        </ul>
+    </div>
+
+    <div class="resume-section">
+        <h2>Experience</h2>
+        <ul>
+            <li><strong>Zero Experience in the field</strong></li>
+        </ul>
+    </div>
+</div>
+
+<%- include('partials/footer') %>
