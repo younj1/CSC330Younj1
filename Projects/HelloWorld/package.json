@@ -20,8 +20,10 @@
   },
   "homepage": "https://github.com/younj1/CSC330Younj1#readme",
   "dependencies": {
+    "dotenv": "^17.2.2",
     "ejs": "^3.1.10",
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "nodemailer": "^7.0.6"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
