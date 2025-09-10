@@ -1,21 +1,19 @@
-# CSC330 - Software Design and Development
+# CSC330 - Software Design and Development Younj1
 
-**Student:** [Joe Youn]
-**Student ID:** [70542227]
-**Semester:** [Senior]
+**Student:** [Your Name]  
+**Student ID:** [Your Student ID]  
+**Semester:** [Current Semester/Year]
 
 ## Repository Structure
 
 This repository contains all my coursework for CSC330 Software Design and Development.
 
 ### Projects
-
 - `projects/hello-world/` - My first Node.js Express application
 
 ### Homework
-
 - `homework/hw1/` - [Assignment 1 description]
-- `homework/hw2/` - [Assignment 2 description]
+- `homework/hw2/` - [Assignment 2 description] 
 - `homework/hw3/` - [Assignment 3 description]
 
 ## How to Run Projects
@@ -23,7 +21,6 @@ This repository contains all my coursework for CSC330 Software Design and Develo
 Each project folder contains its own README with specific instructions.
 
 ### Hello World Project
-
 1. Navigate to the project: `cd projects/hello-world`
 2. Install dependencies: `npm install`
 3. Start the server: `npm start`
