@@ -1,0 +1,237 @@
+<%- include('partials/header') %>
+<h1><%= title %></h1>
+<% if (message) { %>
+<div class="message">
+    <p><%= message %></p>
+</div>
+<% } %>
+<div class="contact-grid">
+    <div class="contact-info">
+        <h2>Get in Touch</h2>
+        <p>Feel free to reach out if you want to connect or have any questions!</p>
+        
+        <div class="contact-details">
+            <p><strong>Email:</strong> younj1@southernct.edu</p>
+            <p><strong>GitHub:</strong> <a href="#">github.com/younj1</a></p>
+            <p><strong>LinkedIn:</strong> <a href="#">linkedin.com/in/joeyoun</a></p>
+        </div>
+        
+        <div class="async-demo">
+            <h3>✨ New Features</h3>
+            <ul>
+                <li>📧 Real email sending</li>
+                <li>⚡ Async JavaScript</li>
+                <li>🔄 Loading states</li>
+                <li>✅ Real-time validation</li>
+                <li>📋 Subject categorization</li>
+                <li>📞 Phone number formatting</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="contact-form-container">
+        <h2>Send a Message</h2>
+        <div id="successMessage" class="success-message" style="display: none;">
+            Thank you! Your message has been sent successfully.
+        </div>
+        
+        <form id="contact-form" class="contact-form" method="POST" action="/contact">
+            <div class="form-group">
+                <label for="name">Name *</label>
+                <input type="text" id="name" name="name" value="<%= formData.name || '' %>" required>
+                <div class="error-message" id="nameError" style="display: none;"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" value="<%= formData.email || '' %>" required>
+                <small class="email-hint">Try typing to see real-time validation</small>
+                <div class="error-message" id="emailError" style="display: none;"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="subject">Subject *</label>
+                <select id="subject" name="subject" class="form-select" required>
+                    <option value="">Please select a subject</option>
+                    <option value="general" <%= formData.subject === 'general' ? 'selected' : '' %>>General Inquiry</option>
+                    <option value="project" <%= formData.subject === 'project' ? 'selected' : '' %>>Project Collaboration</option>
+                    <option value="job" <%= formData.subject === 'job' ? 'selected' : '' %>>Job Opportunity</option>
+                    <option value="technical" <%= formData.subject === 'technical' ? 'selected' : '' %>>Technical Question</option>
+                    <option value="other" <%= formData.subject === 'other' ? 'selected' : '' %>>Other</option>
+                </select>
+                <div class="error-message" id="subjectError" style="display: none;"></div>
+            </div>
+
+            <div class="form-group has-icon">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" value="<%= formData.phone || '' %>" placeholder="(555) 123-4567">
+                <div class="input-icon">📞</div>
+                <div class="error-message" id="phoneError" style="display: none;"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="message">Message *</label>
+                <textarea id="message" name="message" rows="5" placeholder="Tell us about your inquiry..." required><%= formData.message || '' %></textarea>
+                <div class="error-message" id="messageError" style="display: none;"></div>
+            </div>
+            
+            <button type="submit" class="btn">Send Message</button>
+        </form>
+        
+        <div class="form-info">
+            <p><em>This form now sends real emails using async JavaScript! You'll receive a confirmation email when your message is sent.</em></p>
+        </div>
+    </div>
+</div>
+
+<script>
+class ContactForm {
+    constructor() {
+        this.form = document.getElementById('contact-form');
+        this.successMessage = document.getElementById('successMessage');
+        this.init();
+    }
+
+    init() {
+        this.form.addEventListener('submit', this.handleSubmit.bind(this));
+        
+        // Real-time validation
+        const inputs = this.form.querySelectorAll('input, select, textarea');
+        inputs.forEach(input => {
+            input.addEventListener('blur', () => this.validateField(input));
+            input.addEventListener('input', () => this.clearErrors(input));
+        });
+
+        // Phone number formatting
+        const phoneInput = document.getElementById('phone');
+        phoneInput.addEventListener('input', this.formatPhoneNumber.bind(this));
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+        
+        if (this.validateForm()) {
+            // Submit the form normally (let the server handle it)
+            this.form.submit();
+        }
+    }
+
+    validateForm() {
+        let isValid = true;
+        const fields = ['name', 'email', 'subject', 'message'];
+        
+        fields.forEach(fieldName => {
+            const field = document.getElementById(fieldName);
+            if (!this.validateField(field)) {
+                isValid = false;
+            }
+        });
+
+        // Validate phone if provided
+        const phone = document.getElementById('phone');
+        if (phone.value.trim() && !this.validateField(phone)) {
+            isValid = false;
+        }
+
+        return isValid;
+    }
+
+    validateField(field) {
+        const fieldName = field.name;
+        const value = field.value.trim();
+        let isValid = true;
+
+        this.clearErrors(field);
+
+        switch (fieldName) {
+            case 'name':
+                if (!value) {
+                    this.showError(field, 'Please enter your name');
+                    isValid = false;
+                } else if (value.length < 2) {
+                    this.showError(field, 'Name must be at least 2 characters');
+                    isValid = false;
+                }
+                break;
+
+            case 'email':
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!value) {
+                    this.showError(field, 'Please enter your email address');
+                    isValid = false;
+                } else if (!emailRegex.test(value)) {
+                    this.showError(field, 'Please enter a valid email address');
+                    isValid = false;
+                }
+                break;
+
+            case 'subject':
+                if (!value) {
+                    this.showError(field, 'Please select a subject');
+                    isValid = false;
+                }
+                break;
+
+            case 'phone':
+                if (value) { // Only validate if phone number is provided
+                    const phoneRegex = /^\(\d{3}\)\s\d{3}-\d{4}$/;
+                    const digitsOnly = value.replace(/\D/g, '');
+                    if (digitsOnly.length < 10 || !phoneRegex.test(value)) {
+                        this.showError(field, 'Please enter a valid phone number (10 digits)');
+                        isValid = false;
+                    }
+                }
+                break;
+
+            case 'message':
+                if (!value) {
+                    this.showError(field, 'Please enter your message');
+                    isValid = false;
+                } else if (value.length < 10) {
+                    this.showError(field, 'Message must be at least 10 characters');
+                    isValid = false;
+                }
+                break;
+        }
+
+        return isValid;
+    }
+
+    formatPhoneNumber(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        
+        if (value.length >= 6) {
+            value = `(${value.slice(0, 3)}) ${value.slice(3, 6)}-${value.slice(6, 10)}`;
+        } else if (value.length >= 3) {
+            value = `(${value.slice(0, 3)}) ${value.slice(3)}`;
+        }
+        
+        e.target.value = value;
+    }
+
+    showError(field, message) {
+        field.classList.add('error');
+        const errorDiv = document.getElementById(field.name + 'Error');
+        if (errorDiv) {
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+        }
+    }
+
+    clearErrors(field) {
+        field.classList.remove('error');
+        const errorDiv = document.getElementById(field.name + 'Error');
+        if (errorDiv) {
+            errorDiv.style.display = 'none';
+        }
+    }
+}
+
+// Initialize the form when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    new ContactForm();
+});
+</script>
+
+<script src="/js/contact.js"></script>
+<%- include('partials/footer') %>
