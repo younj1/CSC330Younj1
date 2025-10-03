@@ -1,24 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %> | My Website</title>
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
-    <nav>
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-    </nav>
-    
-    <h1>Hello World - Now with Style!</h1>
-    <p><%= message %></p>
-    
-    <p>This started as a simple Express app, added EJS templates, and now has professional CSS styling!</p>
-    
-    <footer>
-        <p>&copy; 2025 Joe Youn</p>
-    </footer>
-</body>
-</html>
+<%- include('partials/header') %>
+
+<h1>Hello World - Now with Partials!</h1>
+<p><%= message %></p>
+
+<p>This website keeps getting better! Now we're using reusable template partials to avoid duplicating our header and footer code.</p>
+
+<%- include('partials/footer') %>
