@@ -46,8 +46,10 @@ app.get('/resume', (req, res) => {
   res.render('resume', { 
     title: 'Resume',
     currentPage: 'resume'
+    // 👆 No message here
   });
 });
+
 
 // Contact route (GET - show form)
 app.get('/contact', (req, res) => {
