@@ -7,7 +7,10 @@ const PORT = process.env.PORT || 3000;
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-// Home route
+// Serve static files from public directory
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Routes (same as before)
 app.get('/', (req, res) => {
   res.render('index', { 
     title: 'Home',
@@ -15,7 +18,6 @@ app.get('/', (req, res) => {
   });
 });
 
-// About route
 app.get('/about', (req, res) => {
   res.render('about', { 
     title: 'About Me',
@@ -23,14 +25,15 @@ app.get('/about', (req, res) => {
   });
 });
 
-// 404 Error Handler - MUST be last!
+// 404 Error Handler
 app.use((req, res) => {
-  res.status(404).render('404');
+  res.status(404).render('404', {
+	title: '404 Not Found',
+	message: 'The page you are looking for does not exist.'
+  });
 });
 
-// Start server
 app.listen(PORT, () => {
   console.log(`🚀 Website running at http://localhost:${PORT}`);
-  console.log(`📄 Pages: / and /about`);
-  console.log(`🔍 Try visiting a page that doesn't exist to see the 404 page!`);
+  console.log(`🎨 Now serving CSS and other static files!`);
 });
