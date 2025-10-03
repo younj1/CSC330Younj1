@@ -1,32 +1,30 @@
-// Import the Express framework
 const express = require('express');
-
-// Create an Express application
+const path = require('path');
 const app = express();
-
-// Set the port (use environment variable or default to 3000)
 const PORT = process.env.PORT || 3000;
 
-// Create a route for the home page
+// Set EJS as template engine
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
+// Home route - now uses templates instead of plain text
 app.get('/', (req, res) => {
-  res.send(`
-    <h1>Hello, World!</h1>
-    <p>Welcome to my first Node.js Express application!</p>
-    <p>This is running on port ${PORT}</p>
-  `);
+  res.render('index', { 
+    title: 'Home',
+    message: 'Welcome to my personal website!'
+  });
 });
 
-// Create another route to demonstrate routing
+// About route - enhanced from Module 1
 app.get('/about', (req, res) => {
-  res.send(`
-    <h1>About This App</h1>
-    <p>This is a simple Express.js application created for CS330.</p>
-    <a href="/">Go back to home</a>
-  `);
+  res.render('about', { 
+    title: 'About Me',
+    message: 'Learn more about my background and interests.'
+  });
 });
 
-// Start the server
+// Start server
 app.listen(PORT, () => {
-  console.log(`🚀 Server is running at http://localhost:${PORT}`);
-  console.log(`📝 Visit http://localhost:${PORT}/about for the about page`);
+  console.log(`🚀 Website running at http://localhost:${PORT}`);
+  console.log(`📄 Pages: / and /about`);
 });
