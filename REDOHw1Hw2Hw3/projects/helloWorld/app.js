@@ -37,6 +37,14 @@ app.get('/contact', (req, res) => {
   });
 });
 
+app.get('/resume', (req, res) => {
+  res.render('resume', { 
+    title: 'My Resume',
+    message: null,
+    formData: {}
+  });
+});
+
 // Contact route (POST - handle form submission)
 app.post('/contact', (req, res) => {
   const { name, email, message } = req.body;
